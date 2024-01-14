@@ -1,11 +1,7 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "|", vim.cmd.Ex)
 
-vim.keymap.set("i", "<C-Enter>", "<Esc>")
-vim.keymap.set("i", "<C-n>", "<Esc>")
-vim.keymap.set("v", "<C-Enter>", "<Esc>")
-vim.keymap.set("v", "<C-n>", "<Esc>")
-
+-- BEGINNING OF MY REMAPS --
 -- remap basic navigation keys in normal mode
 vim.keymap.set("n", "l", "h")
 vim.keymap.set("n", "ñ", "j")
@@ -21,8 +17,28 @@ vim.keymap.set("v", "}", "l")
 -- enters normal mode and saves the file on Control + S
 vim.keymap.set("i", "<C-s>", "<Esc>:update<CR>")
 
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+-- saves on Control + S
+vim.keymap.set("n", "<C-s>", ":update<CR>")
+
+-- remap undo and redo
+vim.keymap.set("n", "'", "u")
+vim.keymap.set("n", "<C-\'>", "<C-r>")
+
+-- remap back and forth jumps 
+vim.keymap.set("n", "q", "b")
+vim.keymap.set("n", "W", "$")
+vim.keymap.set("n", "Q", "0")
+
+-- tab indentation
+vim.api.nvim_set_keymap('n', '<Tab>', '>>', { noremap = true })
+vim.api.nvim_set_keymap('n', '<S-Tab>', '<<', { noremap = true })
+vim.api.nvim_set_keymap('v', '<Tab>', '>gv', { noremap = true })
+vim.api.nvim_set_keymap('v', '<S-Tab>', '<gv', { noremap = true })
+
+-- END OF MY CUSTOM REMAPS --
+
+vim.keymap.set("v", "Ñ", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "[", ":m '<-2<CR>gv=gv")
 
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
@@ -46,7 +62,6 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
-vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
